@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-const dbPath = "../db/teste1.db";
+const dbPath = "./db/teste1.db";
 // Função para abrir conexão com o banco de dados
 
 function openDbConnection() {
@@ -30,12 +30,12 @@ function getProdutosById(id, callback) {
 }
 
 // Função para criar um novo cliente
-function createProdutos(cliente, callback) {
-  const { nome, cpf, email, telefone } = cliente;
+function createProdutos(produto, callback) {
+  const { nome, peso, preco } = produto;
   const db = openDbConnection();
   db.run(
-    "INSERT INTO produtos (nome, peso, preco) VALUES (?, ?, ?, ?)",
-    [nome, cpf, email, telefone],
+    "INSERT INTO produtos (nome, peso, preco) VALUES (?, ?, ?)",
+    [nome, peso, preco],
     function (err) {
       db.close();
       callback(err, { id: this.lastID });
@@ -43,13 +43,13 @@ function createProdutos(cliente, callback) {
   );
 }
 
-// Função para atualizar um cliente existente
-function updateProdutos(id, cliente, callback) {
-  const { nome, cpf, email, telefone } = cliente;
+
+function updateProdutos(id, produto, callback) {
+  const { nome, peso, preco } = produto;
   const db = openDbConnection();
   db.run(
     "UPDATE produtos SET nome = ?, peso = ?, preco = ? WHERE id = ?",
-    [nome, cpf, email, telefone, id],
+    [nome, peso, preco, id],
     function (err) {
       db.close();
       callback(err, { changes: this.changes });

@@ -1,6 +1,6 @@
 //cliente.js
 const sqlite3 = require("sqlite3").verbose();
-const dbPath = "../db/teste1.db";
+const dbPath = "./db/teste1.db";
 
 // Função para abrir conexão com o banco de dados
 function openDbConnection() {
