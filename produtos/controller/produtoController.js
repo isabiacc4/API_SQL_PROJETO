@@ -12,7 +12,7 @@ exports.getAllProdutos = (req, res) => {
 };
 // Controlador para obter um produto pelo ID
 exports.getProdutoById = (req, res) => {
-  Cliente.getProdutoById(req.params.id, (err, produto) => {
+  Produto.getProdutoById(req.params.id, (err, produto) => {
     if (err) {
       res.status(500).send(err);
     } else if (produto) {
