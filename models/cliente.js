@@ -48,7 +48,7 @@ function updateCliente(id, cliente, callback) {
   const { nome, email, idade, telefone } = cliente;
   const db = openDbConnection();
   db.run(
-    "UPDATE clientes SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE id = ?",
+    "UPDATE clientes SET nome = ?, email = ?, idade = ?, telefone = ? WHERE id = ?",
     [nome, email, idade, telefone, id],
     function (err) {
       db.close();
