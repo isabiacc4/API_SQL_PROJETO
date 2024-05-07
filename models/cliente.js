@@ -31,11 +31,11 @@ function getClienteById(id, callback) {
 }
 // Função para criar um novo cliente
 function createCliente(cliente, callback) {
-  const { nome, cpf, email, telefone } = cliente;
+  const { nome, email, idade, telefone } = cliente;
   const db = openDbConnection();
   db.run(
-    "INSERT INTO clientes (nome, cpf, email, telefone) VALUES (?, ?, ?, ?)",
-    [nome, cpf, email, telefone],
+    "INSERT INTO clientes (nome, email, idade, telefone) VALUES (?, ?, ?, ?)",
+    [nome, email, idade, telefone],
     function (err) {
       db.close();
       callback(err, { id: this.lastID });
@@ -45,11 +45,11 @@ function createCliente(cliente, callback) {
 
 // Função para atualizar um cliente existente
 function updateCliente(id, cliente, callback) {
-  const { nome, cpf, email, telefone } = cliente;
+  const { nome, email, idade, telefone } = cliente;
   const db = openDbConnection();
   db.run(
     "UPDATE clientes SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE id = ?",
-    [nome, cpf, email, telefone, id],
+    [nome, email, idade, telefone, id],
     function (err) {
       db.close();
       callback(err, { changes: this.changes });
