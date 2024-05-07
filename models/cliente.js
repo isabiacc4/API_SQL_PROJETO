@@ -1,7 +1,8 @@
+//cliente.js
 const sqlite3 = require("sqlite3").verbose();
-const dbPath = "./db/teste1.db";
-// Função para abrir conexão com o banco de dados
+const dbPath = "../db/teste1.db";
 
+// Função para abrir conexão com o banco de dados
 function openDbConnection() {
   let db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
@@ -12,29 +13,28 @@ function openDbConnection() {
 }
 
 // Função para buscar todos os clientes
-function getAllProdutos(callback) {
+function getAllClientes(callback) {
   const db = openDbConnection();
-  db.all("SELECT * FROM produtos", [], (err, rows) => {
+  db.all("SELECT * FROM clientes", [], (err, rows) => {
     db.close();
     callback(err, rows);
   });
 }
 
 // Função para buscar um cliente por ID
-function getProdutosById(id, callback) {
+function getClienteById(id, callback) {
   const db = openDbConnection();
-  db.get("SELECT * FROM produtos WHERE id = ?", [id], (err, row) => {
+  db.get("SELECT * FROM clientes WHERE id = ?", [id], (err, row) => {
     db.close();
     callback(err, row);
   });
 }
-
 // Função para criar um novo cliente
-function createProdutos(cliente, callback) {
+function createCliente(cliente, callback) {
   const { nome, cpf, email, telefone } = cliente;
   const db = openDbConnection();
   db.run(
-    "INSERT INTO produtos (nome, peso, preco) VALUES (?, ?, ?, ?)",
+    "INSERT INTO clientes (nome, cpf, email, telefone) VALUES (?, ?, ?, ?)",
     [nome, cpf, email, telefone],
     function (err) {
       db.close();
@@ -44,11 +44,11 @@ function createProdutos(cliente, callback) {
 }
 
 // Função para atualizar um cliente existente
-function updateProdutos(id, cliente, callback) {
+function updateCliente(id, cliente, callback) {
   const { nome, cpf, email, telefone } = cliente;
   const db = openDbConnection();
   db.run(
-    "UPDATE produtos SET nome = ?, peso = ?, preco = ? WHERE id = ?",
+    "UPDATE clientes SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE id = ?",
     [nome, cpf, email, telefone, id],
     function (err) {
       db.close();
@@ -57,18 +57,17 @@ function updateProdutos(id, cliente, callback) {
   );
 }
 // Função para deletar um cliente
-function deleteProdutos(id, callback) {
+function deleteCliente(id, callback) {
   const db = openDbConnection();
-  db.run("DELETE FROM produtos WHERE id = ?", [id], function (err) {
+  db.run("DELETE FROM clientes WHERE id = ?", [id], function (err) {
     db.close();
     callback(err, { changes: this.changes });
   });
 }
-
 module.exports = {
-  getAllProdutos,
-  getProdutosById,
-  createProdutos,
-  updateProdutos,
-  deleteProdutos,
+  getAllClientes,
+  getClienteById,
+  createCliente,
+  updateCliente,
+  deleteCliente,
 };

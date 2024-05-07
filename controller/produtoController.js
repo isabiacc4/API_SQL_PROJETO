@@ -1,5 +1,7 @@
 //produtoController.js
 const Produto = require("../models/produto");
+
+
 // Controlador para obter todos os produtos
 exports.getAllProdutos = (req, res) => {
   Produto.getAllProdutos((err, produtos) => {
@@ -10,9 +12,11 @@ exports.getAllProdutos = (req, res) => {
     }
   });
 };
+
+
 // Controlador para obter um produto pelo ID
-exports.getProdutoById = (req, res) => {
-  Produto.getProdutoById(req.params.id, (err, produto) => {
+exports.getProdutosById = (req, res) => {
+  Produto.getProdutosById(req.params.id, (err, produto) => {
     if (err) {
       res.status(500).send(err);
     } else if (produto) {
@@ -22,9 +26,11 @@ exports.getProdutoById = (req, res) => {
     }
   });
 };
+
+
 // Controlador para criar um novo produto
-exports.createProduto = (req, res) => {
-  Produto.createProduto(req.body, (err, result) => {
+exports.createProdutos = (req, res) => {
+  Produto.createProdutos(req.body, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -32,9 +38,11 @@ exports.createProduto = (req, res) => {
     }
   });
 };
+
+
 // Controlador para atualizar um produto existente
-exports.updateProduto = (req, res) => {
-  Produto.updateProduto(req.params.id, req.body, (err, result) => {
+exports.updateProdutos = (req, res) => {
+  Produto.updateProdutos(req.params.id, req.body, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else if (result.changes) {
@@ -44,9 +52,11 @@ exports.updateProduto = (req, res) => {
     }
   });
 };
+
+
 // Controlador para deletar um produto
-exports.deleteProduto = (req, res) => {
-  Produto.deleteProduto(req.params.id, (err, result) => {
+exports.deleteProdutos = (req, res) => {
+  Produto.deleteProdutos(req.params.id, (err, result) => {
     if (err) {
       res.status(500).send(err);
     } else if (result.changes) {
@@ -56,3 +66,4 @@ exports.deleteProduto = (req, res) => {
     }
   });
 };
+

@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const produtoController = require('../controllers/produtoController');
+const produtoController = require('../controller/produtoController');
 // lembrando que a rota raiz tem clientes, definido no app.js
 
 // Rota para obter todos os clientes
 router.get('/', produtoController.getAllProdutos);
 // Rota para obter um único cliente pelo ID
-router.get('/:id', produtoController.getProdutoById);
+router.get('/:id', produtoController.getProdutosById);
 // Rota para criar um novo cliente
-router.post('/', produtoController.createProduto);
+router.post('/', produtoController.createProdutos);
 // Rota para atualizar um cliente existente
-router.put('/:id', produtoController.updateProduto);
+router.put('/:id', produtoController.updateProdutos);
 // Rota para deletar um cliente
-router.delete('/:id', produtoController.deleteProduto);
+router.delete('/:id', produtoController.deleteProdutos);
 
 module.exports = router;
